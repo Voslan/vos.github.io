@@ -19,6 +19,7 @@ public:
 	List(); 
 	void AddNode(int addData);
 	void DeleteNode(int delData); 
+	void SearchNode(int SeData); 
 	void PrintList(); 
 };
 
@@ -70,6 +71,22 @@ void List::DeleteNode(int delData) {
 		temp->next = curr; 
 		delete delN; 
 		cout << "the data " << delData << " Was deleted." << endl; 
+	}
+}
+
+void List::SearchNode(int SeData) {
+	curr = head; 
+	while (curr->next != NULL && curr->data != SeData)
+	{
+		curr = curr->next; 
+	}
+	if (curr == NULL)
+	{
+		cout << SeData << " Is not in the list." << endl; 
+	}
+	else
+	{
+		cout << "This is the data you looking for: " << curr->data << endl; 
 	}
 }
 
