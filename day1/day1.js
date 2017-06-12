@@ -1,10 +1,16 @@
 var myGamePiece;
+var myBackground;
 var myObstacles = [];
 var myScore;
+var mySound;
+var myMusic;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 10, 120);
+    myGamePiece = new component(30, 30, "smiley.gif", 10, 120, "image");
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    mySound = new sound("hit.mp3");
+    myMusic = new sound("bgmusic.mp3");
+    myMusic.play();
     myGameArea.start();
 }
 
@@ -28,18 +34,23 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
+  if (type == "image") {
+    this.image = new Image();
+    this.image.src = color;
+  }
     this.width = width;
     this.height = height;
     this.speedX = 0;
-    this.speedY = 0;    
+    this.speedY = 0;
     this.x = x;
     this.y = y;    
     this.update = function() {
         ctx = myGameArea.context;
-        if (this.type == "text") {
-            ctx.font = this.width + " " + this.height;
-            ctx.fillStyle = color;
-            ctx.fillText(this.text, this.x, this.y);
+       if (type == "image") {
+          ctx.drawImage(this.image, 
+          this.x, 
+          this.y,
+          this.width, this.height);
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -70,7 +81,9 @@ function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
+            mySound.play();
             myGameArea.stop();
+            myMusic.stop();
             return;
         } 
     }
@@ -103,23 +116,31 @@ function everyinterval(n) {
     return false;
 }
 
-function moveup() {
-    myGamePiece.speedY = -1; 
-}
-
-function movedown() {
-    myGamePiece.speedY = 1; 
-}
-
-function moveleft() {
-    myGamePiece.speedX = -1; 
-}
-
-function moveright() {
-    myGamePiece.speedX = 1; 
+function move(dir) {
+    myGamePiece.image.src = "angry.gif";
+    if (dir == "up") {myGamePiece.speedY = -1; }
+    if (dir == "down") {myGamePiece.speedY = 1; }
+    if (dir == "left") {myGamePiece.speedX = -1; }
+    if (dir == "right") {myGamePiece.speedX = 1; }
 }
 
 function clearmove() {
+    myGamePiece.image.src = "smiley.gif";
     myGamePiece.speedX = 0; 
     myGamePiece.speedY = 0; 
+}
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
 }
