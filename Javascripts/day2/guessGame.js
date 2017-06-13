@@ -4,16 +4,16 @@ var trycount = 0;
 
 function startGame() {
   
-  while (guess != number && trycount < 5)
+  while (guess != number && trycount < 8)
   {
-    var x = prompt("Enter a Value", "0");
+    var x = prompt("Guess a number from 1 to 20", "0");
     var guess = parseInt(x);  
     
     if(guess < number) {
-      prompt("Number too low"); 
+      prompt("too low"); 
     }
     else if (guess > number) {
-      prompt("Number too high")
+      prompt("too high")
     }
     trycount++; 
   }
