@@ -1,0 +1,38 @@
+
+* {font-family: "Arial Black" Gadget, sans-serif; }
+
+div * {font-family: "Comic Sans MS", cursive, sans-serif;}
+
+#h {
+  
+  color: cadetblue;
+  padding-bottom: 20px;
+  padding-left: 20px; 
+  padding-right: 20px;
+  padding-top: 20px; 
+ 
+  margin: 10px; 
+  
+  border-top: 2px solid #00308f;
+  border-bottom: 2px solid #00308f; 
+  border-left: 2px solid #00308f; 
+  border-right: 2px solid #00308f; 
+  
+  background: url("./sprite/snow.gif") repeat; 
+  
+  text-align: center; 
+}
+
+li {
+  padding: 2px;
+  margin: auto;
+}
+
+#body {
+  background: #5d8aa8;
+}
+
+img[src="./sprite/KaidoKid.jpg"] {
+  float: left;
+  padding: 10px;
+}
