@@ -3,19 +3,14 @@
 <title>Vos Webstie</title>
   
 <head>
-<style>
-canvas {
-    border:1px solid #d3d3d3;
-    background-color: #f1f1f1;
-}
-</style>
-<script src="index.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/index.css">
+  <script src="./js/index.js"></script>
 </head>
 
-<body onload="startGame()">
-<p>Day 1 - flappy bird game </p>
+<body id="body" onload="startGame()">
+<h1 id="h1"> Flappy bird </h1>
   
-<div style="text-align:center;width:480px;">
+<div id="div" style="text-align:center;width:480px;">
   <button onmousedown="move('up')" onmouseup="clearmove()" ontouchstart="move('up')">UP</button><br><br>
   <button onmousedown="move('left')" onmouseup="clearmove()" ontouchstart="move('left')">LEFT</button>
   <button onmousedown="move('right')" onmouseup="clearmove()" ontouchstart="move('right')">RIGHT</button><br><br>

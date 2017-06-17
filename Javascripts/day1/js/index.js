@@ -6,10 +6,10 @@ var mySound;
 var myMusic;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "smiley.gif", 10, 120, "image");
+    myGamePiece = new component(30, 30, "./sprite/smiley.gif", 10, 120, "image");
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
-    mySound = new sound("hit.mp3");
-    myMusic = new sound("bgmusic.mp3");
+    mySound = new sound("./music/hit.mp3");
+    myMusic = new sound("./music/bgmusic.mp3");
     myMusic.play();
     myGameArea.start();
 }
@@ -117,7 +117,7 @@ function everyinterval(n) {
 }
 
 function move(dir) {
-    myGamePiece.image.src = "angry.gif";
+    myGamePiece.image.src = "./sprite/angry.gif";
     if (dir == "up") {myGamePiece.speedY = -1; }
     if (dir == "down") {myGamePiece.speedY = 1; }
     if (dir == "left") {myGamePiece.speedX = -1; }
@@ -125,7 +125,7 @@ function move(dir) {
 }
 
 function clearmove() {
-    myGamePiece.image.src = "smiley.gif";
+    myGamePiece.image.src = "./sprite/smiley.gif";
     myGamePiece.speedX = 0; 
     myGamePiece.speedY = 0; 
 }
